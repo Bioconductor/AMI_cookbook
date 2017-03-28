@@ -279,7 +279,6 @@ execute "install base Bioconductor packages" do
   command %q(R -e "source('/tmp/base.R')")
   user "ubuntu"
   group "ubuntu"
-  not_if {File.exists? "/usr/local/lib/R/library/BiocInstaller"}
 end
 
 ## FIXME: Not clean; does not remove dependencies
