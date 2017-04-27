@@ -318,8 +318,8 @@ end
 
 execute "disable password lock in cloud.cfg" do
     command %Q(sed -i.bak "s/lock_passwd: True/lock_passwd: False/" cloud.cfg)
-    user "root"   
-    cwd "/etc/cloud"     
+    user "root"
+    cwd "/etc/cloud"
     not_if "grep -q 'lock_passwd: False' /etc/cloud/cloud.cfg"
 end
 

@@ -1,13 +1,12 @@
 default['use_r_devel'] = {rel: false, dev: true}
-default['bioc_version'] = {rel: '3.4', dev: '3.5'}
-default['r_version'] = {rel: '3.3', dev: '3.4'}
+default['bioc_version'] = {rel: '3.5', dev: '3.6'}
+default['r_version'] = {rel: '3.4', dev: '3.4'}
 
-#default['desired_hostname'] = {rel: "malbec1", dev: "malbec2"}
 default['time_zone'] = "America/New_York"
 
-default['r_url'] = {rel: 'https://cran.rstudio.com/src/base/R-3/R-3.3.2.tar.gz',
+default['r_url'] = {rel: 'https://cran.rstudio.com/src/base/R-3/R-3.3.3.tar.gz',
   dev: 'https://stat.ethz.ch/R/daily/R-devel.tar.gz'}
-default['r_src_dir'] = {rel: 'R-3.3.2', dev: 'R-devel'}
+default['r_src_dir'] = {rel: 'R-3.4.0', dev: 'R-devel'}
 
 default['root_url'] = {dev: "https://root.cern.ch/download/root_v5.34.36.source.tar.gz",
   rel: "https://root.cern.ch/download/root_v5.34.36.source.tar.gz"}
