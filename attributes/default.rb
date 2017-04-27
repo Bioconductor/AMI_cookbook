@@ -4,7 +4,7 @@ default['r_version'] = {rel: '3.4', dev: '3.4'}
 
 default['time_zone'] = "America/New_York"
 
-default['r_url'] = {rel: 'https://cran.rstudio.com/src/base/R-3/R-3.3.3.tar.gz',
+default['r_url'] = {rel: 'https://cran.rstudio.com/src/base/R-3/R-3.4.0.tar.gz',
   dev: 'https://stat.ethz.ch/R/daily/R-devel.tar.gz'}
 default['r_src_dir'] = {rel: 'R-3.4.0', dev: 'R-devel'}
 
