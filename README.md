@@ -15,4 +15,4 @@ This recipe was written for an Ubuntu 16.04 AWS EC2 instance with 4 cores,
 
 Usage
 =====
-See instructions at https://github.com/Bioconductor/AWS_management/blob/master/docs/Create_AMI_from_Chef.md
+See instructions at https://github.com/Bioconductor/AWS_management/blob/master/docs/AMI_from_CHEF_HOWTO.md
