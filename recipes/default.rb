@@ -1,11 +1,22 @@
-execute "update-upgrade" do
-  command "apt-get update && apt-get upgrade -y"
+## Any Ubuntu 16.04 image brought up from EC2 Quickstart or AWS Marketplace
+## after March 29, 2017 will running on the AWS-tuned kernel:
+## https://insights.ubuntu.com/2017/04/05/ubuntu-on-aws-gets-serious-performance-boost-with-aws-tuned-kernel/
+## grub update:
+## Old grub config is different from new - dpkg pulls up GUI to select
+## options. Pass flag to accept new config.
+
+execute "system updates" do
+  command "apt-get update"
   action :run
 end
 
-## The node attribute node["reldev"] is defined by the roles 
-## AMI_release_linux and AMI_devel_linux. Here a local reldev variable
-## is defined and used to drive values of other local variables.
+execute "system upgrades" do
+  command 'apt-get --with-new-pkgs -o Dpkg::Options::="--force-confnew" upgrade -y'
+  action :run
+end
+
+## The node attribute node["reldev"] is defined in the code that creates
+## the roles: AMI_release_linux and AMI_devel_linux.
 if node["reldev"] == "devel"
   reldev = :dev
 elsif node["reldev"] == "release"
