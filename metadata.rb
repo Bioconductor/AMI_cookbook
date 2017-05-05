@@ -5,6 +5,6 @@ license          'Artistic 2.0'
 description      'Installs R and Bioconductor on an AWS EC2 instace'
 long_description 'Installs R and Bioconductor on an AWS EC2 instance'
 source_url       'https://github.com/Bioconductor/AMI_cookbook' if respond_to?(:source_url)
-version          '0.1.17'
+version          '0.1.18'
 
 supports 'ubuntu'
