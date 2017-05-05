@@ -200,6 +200,7 @@ directory "/downloads" do
   owner "root"
   mode "0755"
   action :create
+  not_if {Dir.exists? "/downloads"}
 end
 
 remote_file "/downloads/#{node['r_url'][reldev].split("/").last}" do
