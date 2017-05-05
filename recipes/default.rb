@@ -11,7 +11,7 @@ execute "system updates" do
 end
 
 execute "system upgrades" do
-  command 'apt-get --with-new-pkgs -o Dpkg::Options::="--force-confnew" upgrade -y'
+  command 'DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade'
   action :run
 end
 
