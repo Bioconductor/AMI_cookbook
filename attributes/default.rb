@@ -21,10 +21,6 @@ default['libsbml_dir'] = "libsbml-5.10.2"
 default['vienna_rna_url'] = "https://www.tbi.univie.ac.at/RNA/download/sourcecode/2_2_x/ViennaRNA-2.2.7.tar.gz"
 default['vienna_rna_dir'] = "ViennaRNA-2.2.7"
 
-default['vep_url'] = {dev: "https://codeload.github.com/Ensembl/ensembl-tools/zip/release/87",
-  rel: "https://codeload.github.com/Ensembl/ensembl-tools/zip/release/87"}
-default['vep_dir'] = {dev: "ensembl-tools-release-87", rel: "ensembl-tools-release-87"}
-
 default['argtable_url'] = "http://prdownloads.sourceforge.net/argtable/argtable2-13.tar.gz"
 
 default['clustalo_url'] = "http://www.clustal.org/omega/clustal-omega-1.2.1.tar.gz"

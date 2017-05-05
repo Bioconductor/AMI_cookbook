@@ -187,25 +187,6 @@ execute "build ViennaRNA" do
   not_if {File.exists? "/tmp/#{node['vienna_rna_dir']}/config.log"}
 end
 
-# Ensembl VEP tool
-
-remote_file "/tmp/#{node['vep_dir'][reldev]}.zip" do
-  source node['vep_url'][reldev]
-end
-
-execute "install VEP" do
-  command "unzip #{node['vep_dir'][reldev]} && cd #{node['vep_dir'][reldev]}/scripts && mv variant_effect_predictor /usr/local/ && cd /usr/local/variant_effect_predictor && perl INSTALL.pl --NO_HTSLIB -a a"
-  cwd "/tmp"
-  not_if {File.exists? "/usr/local/variant_effect_predictor"}
-end
-
-# add /usr/local/variant_effect_predictor to path
-execute "add vep to path" do
-  command "echo 'export PATH=$PATH:/usr/local/variant_effect_predictor' >> /etc/profile"
-  not_if "grep -q variant_effect_predictor /etc/profile"
-end
-
-
 ## --------------------------------------------------------------------------- 
 ## Install R as root without recommended packages:
 ## AFAICT rstudio server must run R as root because it calls setuid when a 
