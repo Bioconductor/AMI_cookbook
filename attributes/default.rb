@@ -1,4 +1,3 @@
-default['use_r_devel'] = {rel: false, dev: true}
 default['bioc_version'] = {rel: '3.5', dev: '3.6'}
 default['r_version'] = {rel: '3.4', dev: '3.4'}
 
