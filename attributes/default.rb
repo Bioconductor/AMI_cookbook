@@ -23,4 +23,4 @@ default['clustalo_url'] = "http://www.clustal.org/omega/clustal-omega-1.2.1.tar.
 
 ## vignettes and rstudio
 default['pandoc_url'] = "https://github.com/jgm/pandoc/releases/download/1.19.1/pandoc-1.19.1-1-amd64.deb"
-default['rstudio_url'] = "https://download2.rstudio.org/rstudio-server-1.0.136-amd64.deb"
+default['rstudio_url'] = "https://download1.rstudio.org/rstudio-1.0.143-amd64.deb"
