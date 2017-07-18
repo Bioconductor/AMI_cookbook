@@ -4,9 +4,9 @@ default['time_zone'] = "America/New_York"
 ## 'r_version', 'bioc_version', 'r_url' and 'r_src_dir'
 default['r_version'] = {rel: '3.4', dev: '3.4'}
 default['bioc_version'] = {rel: '3.5', dev: '3.6'}
-default['r_url'] = {rel: 'https://cran.rstudio.com/src/base/R-3/R-3.4.0.tar.gz',
+default['r_url'] = {rel: 'https://cran.rstudio.com/src/base/R-3/R-3.4.1.tar.gz',
   dev: 'https://cran.rstudio.com/src/base/R-3/R-3.4.1.tar.gz'}
-default['r_src_dir'] = {rel: 'R-3.4.0', dev: 'R-3.4.1'}
+default['r_src_dir'] = {rel: 'R-3.4.1', dev: 'R-3.4.1'}
 
 ## System dependencies for R / BioC packages
 default['root_url'] = {dev: "https://root.cern.ch/download/root_v5.34.36.source.tar.gz",
