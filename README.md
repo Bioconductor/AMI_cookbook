@@ -11,7 +11,7 @@ Requirements
 ============
 
 This recipe was written for an Ubuntu 16.04 AWS EC2 instance with 4 cores, 
-16 GB RAM and 100 GB disk space.
+16 GB RAM and 40 GB disk space.
 
 Usage
 =====
