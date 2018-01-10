@@ -238,7 +238,7 @@ end
 
 execute "install BiocInstaller as root" do
   user "root"
-  command %Q(R -e "source('https://bioconductor.org/biocLite.R')")
+  command %Q(R -e "install.packages('BiocInstaller', repos='https://bioconductor.org/packages/#{bioc_version}/bioc')")
   not_if {File.exists? "/usr/local/lib/R/library/BiocInstaller"}
 end
 
@@ -246,7 +246,7 @@ if reldev == :dev
   execute "run useDevel()" do
     command %Q(R -e "BiocInstaller::useDevel()")
     user "root"
-    not_if %Q(R --slave -q -e "BiocInstaller:::IS_USER" | grep -q FALSE)
+    not_if %Q(R --slave -q -e "!BiocInstaller::isDevel()" | grep -q FALSE)
   end
 end
 
