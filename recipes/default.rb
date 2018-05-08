@@ -48,7 +48,7 @@ pkgs = %w(ack-grep libnetcdf-dev libhdf5-serial-dev sqlite libfftw3-dev
           byacc automake libmysqlclient-dev postgresql-server-dev-all 
           firefox graphviz python-pip libxml-simple-perl texlive-lang-european 
           libmpfr-dev tree python-yaml libmodule-build-perl gdb biber git
-          gdebi-core build-essential texlive-full)
+          gdebi-core build-essential texlive-full libudunits2-dev)
 package pkgs do
   action :install
 end
