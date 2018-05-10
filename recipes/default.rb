@@ -31,14 +31,15 @@ r_version = node['r_version'][reldev]
 ## Repo packages 
 ## --------------------------------------------------------------------------- 
 
-
+## NOTE: Do not install apache. Doing so would require configuring 
+##       a proxy and redirect for rstudio in the apache config.
 pkgs = %w(ack-grep libnetcdf-dev libhdf5-serial-dev sqlite libfftw3-dev 
           libfftw3-doc libopenbabel-dev fftw3 fftw3-dev pkg-config 
           xfonts-100dpi xfonts-75dpi
           libopenmpi-dev openmpi-bin mpi-default-bin openmpi-common
           libexempi3 openmpi-doc texlive-science python-mpi4py
           texlive-bibtex-extra texlive-fonts-extra fortran77-compiler gfortran
-          libreadline-dev libx11-dev libxt-dev texinfo apache2 libxml2-dev
+          libreadline-dev libx11-dev libxt-dev texinfo libxml2-dev
           libcurl4-openssl-dev xvfb  libpng12-dev
           libjpeg-dev libcairo2-dev libtiff5-dev
           tcl8.5-dev tk8.5-dev libicu-dev libgsl2 libgsl0-dev
