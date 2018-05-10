@@ -31,24 +31,31 @@ r_version = node['r_version'][reldev]
 ## Repo packages 
 ## --------------------------------------------------------------------------- 
 
+
 pkgs = %w(ack-grep libnetcdf-dev libhdf5-serial-dev sqlite libfftw3-dev 
-          libfftw3-doc libopenbabel-dev libfftw3-3 pkg-config xfonts-100dpi 
-          xfonts-75dpi libopenmpi-dev openmpi-bin mpi-default-bin 
-          openmpi-common libexempi3 openmpi-doc texlive-science python-mpi4py 
-          texlive-bibtex-extra texlive-fonts-extra fort77 gfortran 
-          libreadline-dev libx11-dev libxt-dev texinfo libxml2-dev 
-          libcurl4-openssl-dev xvfb  libpng12-dev libjpeg-dev libcairo2-dev 
-          libtiff5-dev tcl8.5-dev tk8.5-dev libicu-dev libgsl2 libgsl-dev 
-          libgtk2.0-dev gcj-4.8 openjdk-8-jdk texlive-latex-extra 
-          texlive-fonts-recommended libgl1-mesa-dev libglu1-mesa-dev htop 
-          libgmp3-dev imagemagick unzip libhdf5-dev libncurses5-dev libbz2-dev 
-          libxpm-dev liblapack-dev libv8-3.14-dev libperl-dev 
+          libfftw3-doc libopenbabel-dev fftw3 fftw3-dev pkg-config 
+          xfonts-100dpi xfonts-75dpi
+          libopenmpi-dev openmpi-bin mpi-default-bin openmpi-common
+          libexempi3 openmpi-doc texlive-science python-mpi4py
+          texlive-bibtex-extra texlive-fonts-extra fortran77-compiler gfortran
+          libreadline-dev libx11-dev libxt-dev texinfo apache2 libxml2-dev
+          libcurl4-openssl-dev xvfb  libpng12-dev
+          libjpeg-dev libcairo2-dev libtiff5-dev
+          tcl8.5-dev tk8.5-dev libicu-dev libgsl2 libgsl0-dev
+          libgtk2.0-dev gcj-4.8 openjdk-8-jdk texlive-latex-extra
+          texlive-fonts-recommended libgl1-mesa-dev libglu1-mesa-dev
+          htop libgmp3-dev imagemagick unzip libncurses-dev 
+          libbz2-dev libxpm-dev liblapack-dev libv8-3.14-dev libperl-dev
           libarchive-extract-perl libfile-copy-recursive-perl libcgi-pm-perl 
-          tabix libdbi-perl libdbd-mysql-perl ggobi libgtkmm-2.4-dev libssl-dev 
-          byacc automake libmysqlclient-dev postgresql-server-dev-all 
-          firefox graphviz python-pip libxml-simple-perl texlive-lang-european 
-          libmpfr-dev tree python-yaml libmodule-build-perl gdb biber git
-          gdebi-core build-essential texlive-full libudunits2-dev)
+          tabix libdbi-perl libdbd-mysql-perl ggobi libgtkmm-2.4-dev 
+          libssl-dev byacc
+          automake libmysqlclient-dev postgresql-server-dev-all
+          firefox graphviz python-pip libxml-simple-perl texlive-lang-european
+          libmpfr-dev libudunits2-dev tree python-yaml libmodule-build-perl 
+          gdb biber git python-sklearn python-numpy python-pandas python-h5py
+          libprotoc-dev libprotobuf-dev protobuf-compiler libapparmor-dev 
+          libgeos-dev libmagick++-dev libsasl2-dev
+          gdebi-core)
 package pkgs do
   action :install
 end
@@ -125,6 +132,7 @@ end
 
 directory "/tmp/rootbuild" do
   action :create
+  not_if {Dir.exists? "/tmp/rootbuild"}
 end
 
 execute "build root" do
@@ -263,13 +271,15 @@ ubuntu_dir = "/home/ubuntu"
     end
 end
 
-cookbook_file "/tmp/base.R" do
-  source "baseBioconductorPackages.R"
+## Install base packages
+
+cookbook_file "/tmp/basePackages.R" do
+  source "basePackages.R"
   mode 0755
 end
 
 execute "install base Bioconductor packages" do
-  command %q(R -e "source('/tmp/base.R')")
+  command %q(R -e "source('/tmp/basePackages.R')" > /tmp/basePackages.log)
   user "ubuntu"
   group "ubuntu"
 end
@@ -280,16 +290,38 @@ execute "remove root BiocInstaller" do
   command %q(R --slave -q -e "remove.packages('BiocInstaller', lib='/usr/local/lib/R/library')")
 end
 
-cookbook_file "/tmp/loaded.R" do
-  source "loadedBioconductorPackages.R"
+cookbook_file "/tmp/softwarePackages.R" do
+  source "softwarePackages.R"
   mode 0755
 end
 
-execute "install software and annotation Bioconductor packages" do
-  command %q(R -e "source('/tmp/loaded.R')")
+execute "install software Bioconductor packages" do
+  command %q(R -e "source('/tmp/softwarePackages.R')" > /tmp/softwarePackages.log)
   user "ubuntu"
   group "ubuntu"
-  not_if {File.exists? "/usr/local/lib/R/library/GenomicFeatures"}
+  not_if {File.exists? "/usr/local/lib/R/library/BiocGenerics"}
+end
+
+cookbook_file "/tmp/dataExperimentPackages.R" do
+  source "dataExperimentPackages.R"
+  mode 0755
+end
+
+execute "install data experiment Bioconductor packages" do
+  command %q(R -e "source('/tmp/dataExperimentPackages.R')" > /tmp/dataExperimentPackages.log)
+  user "ubuntu"
+  group "ubuntu"
+end
+
+cookbook_file "/tmp/annotationPackages.R" do
+  source "annotationPackages.R"
+  mode 0755
+end
+
+execute "install annotation Bioconductor packages" do
+  command %q(R -e "source('/tmp/annotationPackages.R')" > /tmp/annotationPackages.log)
+  user "ubuntu"
+  group "ubuntu"
 end
 
 ## latex settings
@@ -297,6 +329,7 @@ end
 file "/etc/texmf/texmf.d/01bioc.cnf" do
     content "shell_escape=t"
     owner "root"
+    group "root"
     mode "0644"
 end
 
