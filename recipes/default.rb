@@ -271,7 +271,7 @@ ubuntu_dir = "/home/ubuntu"
     end
 end
 
-## Install base packages
+## Install base, software, data experiment and annotation packages
 
 cookbook_file "/tmp/basePackages.R" do
   source "basePackages.R"
