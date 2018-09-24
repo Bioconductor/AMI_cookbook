@@ -31,8 +31,8 @@ r_version = node['r_version'][reldev]
 ## Repo packages 
 ## --------------------------------------------------------------------------- 
 
-## NOTE: Do not install apache. Doing so would require configuring 
-##       a proxy and redirect for rstudio in the apache config.
+## NOTE: If apache is installed some configuration must be done to
+##       play nice with RStudio which is running on port 80. 
 pkgs = %w(ack-grep libnetcdf-dev libhdf5-serial-dev sqlite libfftw3-dev 
           libfftw3-doc libopenbabel-dev fftw3 fftw3-dev pkg-config 
           xfonts-100dpi xfonts-75dpi
