@@ -5,7 +5,7 @@ ubuntu_lib <- .libPaths()[1]
 url <- "http://www.bioconductor.org/packages/stats/bioc/bioc_pkg_scores.tab"
 tbl <- read.table(url, header=TRUE, stringsAsFactors=FALSE)
 sorted <- tbl[with(tbl, order(-Download_score, Package)), ]
-pkgs <- sorted[1:75, "Package"] 
+pkgs <- c(sorted[1:75, "Package"], "BiocManager") 
 
 installed <- rownames(installed.packages(lib.loc=ubuntu_lib))
 try <- setdiff(pkgs, installed)

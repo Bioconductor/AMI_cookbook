@@ -4,11 +4,11 @@ default['time_zone'] = "America/New_York"
 ## 'r_version', 'bioc_version', 'r_url' and 'r_src_dir'
 default['r_version'] = {rel: '3.5', dev: '3.5'}
 default['bioc_version'] = {rel: '3.7', dev: '3.8'}
-default['r_url'] = {rel: 'https://cran.rstudio.com/src/base/R-3/R-3.5.0.tar.gz',
-  dev: 'https://cran.rstudio.com/src/base/R-3/R-3.5.0.tar.gz'}
+default['r_url'] = {rel: 'https://cran.rstudio.com/src/base/R-3/R-3.5.1.tar.gz',
+  dev: 'https://cran.rstudio.com/src/base/R-3/R-3.5.1.tar.gz'}
 #  dev: 'https://stat.ethz.ch/R/daily/R-devel.tar.gz'}
 #default['r_src_dir'] = {rel: 'R-3.5.0', dev: 'R-devel'}
-default['r_src_dir'] = {rel: 'R-3.5.0', dev: 'R-3.5.0'}
+default['r_src_dir'] = {rel: 'R-3.5.1', dev: 'R-3.5.1'}
 
 ## System dependencies for R / BioC packages
 default['root_url'] = {dev: "https://root.cern.ch/download/root_v5.34.36.source.tar.gz",
@@ -25,4 +25,4 @@ default['clustalo_url'] = "http://www.clustal.org/omega/clustal-omega-1.2.1.tar.
 
 ## vignettes and rstudio
 default['pandoc_url'] = "https://github.com/jgm/pandoc/releases/download/1.19.1/pandoc-1.19.1-1-amd64.deb"
-default['rstudio_url'] = "https://download2.rstudio.org/rstudio-server-1.1.447-amd64.deb"
+default['rstudio_url'] = "https://download2.rstudio.org/rstudio-server-1.1.453-amd64.deb"
