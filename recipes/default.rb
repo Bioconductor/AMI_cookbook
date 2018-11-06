@@ -245,17 +245,17 @@ execute "install R" do
     not_if {File.exists? "/usr/local/bin/R"}
 end
 
-execute "install BiocInstaller as root" do
+execute "install BiocManager as root" do
   user "root"
-  command %Q(R -e "install.packages('BiocInstaller', repos='https://bioconductor.org/packages/#{bioc_version}/bioc')")
-  not_if {File.exists? "/usr/local/lib/R/library/BiocInstaller"}
+  command %Q(R -e "install.packages('BiocManager')")
+  not_if {File.exists? "/usr/local/lib/R/library/BiocManager"}
 end
 
 if reldev == :dev
-  execute "run useDevel()" do
-    command %Q(R -e "BiocInstaller::useDevel()")
+  execute "make devel if necessary" do
+    command %Q(R -e "BiocManager::install(version='devel')")
     user "root"
-    not_if %Q(R --slave -q -e "!BiocInstaller::isDevel()" | grep -q FALSE)
+    not_if %Q(R --slave -q -e "!BiocManager:::isDevel()" | grep -q FALSE)
   end
 end
 
@@ -286,9 +286,9 @@ execute "install base Bioconductor packages" do
 end
 
 ## FIXME: Not clean; does not remove dependencies
-execute "remove root BiocInstaller" do
-  only_if {File.exists? "/usr/local/lib/R/library/BiocInstaller"}
-  command %q(R --slave -q -e "remove.packages('BiocInstaller', lib='/usr/local/lib/R/library')")
+execute "remove root BiocManager" do
+  only_if {File.exists? "/usr/local/lib/R/library/BiocManager"}
+  command %q(R --slave -q -e "remove.packages('BiocManager', lib='/usr/local/lib/R/library')")
 end
 
 cookbook_file "/tmp/softwarePackages.R" do

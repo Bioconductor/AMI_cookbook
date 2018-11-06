@@ -1,4 +1,4 @@
-library(BiocInstaller)
+library(BiocManager)
 ubuntu_lib <- .libPaths()[1]
 
 ## Top 30 annotation downloads:
@@ -13,7 +13,7 @@ try <- setdiff(pkgs, installed)
 for (xx in try) {
    print(paste0("TRYING: ", xx))
    tryCatch({
-       biocLite(xx, lib=ubuntu_lib, lib.loc=ubuntu_lib, ask=FALSE)
+       BiocManager::install(xx, lib=ubuntu_lib, lib.loc=ubuntu_lib, ask=FALSE)
        print(paste0("INSTALLED: ", xx))
     }, error=function(err) {
         print(paste0("FAILED: ", xx))
