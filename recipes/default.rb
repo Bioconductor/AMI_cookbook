@@ -247,7 +247,7 @@ end
 
 execute "install BiocManager as root" do
   user "root"
-  command %Q(R -e "install.packages('BiocManager')")
+  command %Q(R -e "install.packages('BiocManager', repos = 'http://cran.us.r-project.org')")
   not_if {File.exists? "/usr/local/lib/R/library/BiocManager"}
 end
 
