@@ -40,10 +40,10 @@ pkgs = %w(ack-grep libnetcdf-dev libhdf5-serial-dev sqlite libfftw3-dev
           libexempi3 openmpi-doc texlive-science python-mpi4py
           texlive-bibtex-extra texlive-fonts-extra fortran77-compiler gfortran
           libreadline-dev libx11-dev libxt-dev texinfo libxml2-dev
-          libcurl4-openssl-dev xvfb  libpng12-dev
+          libcurl4-openssl-dev xvfb  libpng-dev
           libjpeg-dev libcairo2-dev libtiff5-dev
-          tcl8.5-dev tk8.5-dev libicu-dev libgsl2 libgsl0-dev
-          libgtk2.0-dev gcj-4.8 openjdk-8-jdk texlive-latex-extra
+          tcl8.5-dev tk8.5-dev libicu-dev libgsl0-dev
+          libgtk2.0-dev gcc-4.8 default-jre openjdk-8-jdk texlive-latex-extra
           texlive-fonts-recommended libgl1-mesa-dev libglu1-mesa-dev
           htop libgmp3-dev imagemagick unzip libncurses-dev 
           libbz2-dev libxpm-dev liblapack-dev libv8-3.14-dev libperl-dev
