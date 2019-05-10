@@ -125,40 +125,6 @@ execute "build clustalo" do
   cwd "/tmp"
 end
 
-## ROOT: data analysis framework
-
-remote_file "/tmp/#{node['root_url'][reldev].split("/").last}" do
-  source node['root_url'][reldev]
-end
-
-directory "/tmp/rootbuild" do
-  action :create
-  not_if {Dir.exists? "/tmp/rootbuild"}
-end
-
-execute "build root" do
-  cwd "/tmp/rootbuild"
-  command "tar zxf /tmp/#{node['root_url'][reldev].split("/").last} && cd root && ./configure --prefix=/usr/local/root && make && make install"
-  not_if {File.exists? "/tmp/rootbuild/root"}
-end
-
-file "/etc/ld.so.conf.d/ROOT.conf" do
-  content "/usr/local/root/lib/root"
-end
-
-execute "ldconfig" do
-  command "ldconfig"
-end
-
-execute "add root to path" do
-  command "echo 'export PATH=$PATH:/usr/local/root/bin' >> /etc/profile"
-  not_if "grep -q /usr/local/root/bin /etc/profile"
-end
-
-execute "add rootsys" do
-  command "echo 'export ROOTSYS=/usr/local/root' >> /etc/profile"
-  not_if "grep -q ROOTSYS /etc/profile"
-end
 
 ## JAGS
 

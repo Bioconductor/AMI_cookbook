@@ -11,8 +11,6 @@ default['r_url'] = {rel: 'https://cran.rstudio.com/src/base/R-3/R-3.6.0.tar.gz',
 default['r_src_dir'] = {rel: 'R-3.6.0', dev: 'R-3.6.0'}
 
 ## System dependencies for R / BioC packages
-default['root_url'] = {dev: "https://root.cern.ch/download/root_v5.34.36.source.tar.gz",
-  rel: "https://root.cern.ch/download/root_v5.34.36.source.tar.gz"}
 default['jags_url'] = {dev: "https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-4.2.0.tar.gz/download",
   rel: "https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-4.2.0.tar.gz/download"}
 default['jags_dir'] = {dev: "JAGS-4.2.0", rel: "JAGS-4.2.0"}
