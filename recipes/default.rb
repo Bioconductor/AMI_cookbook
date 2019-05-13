@@ -213,13 +213,13 @@ end
 
 execute "install BiocManager as root" do
   user "root"
-  command %Q(R -e "install.packages('BiocManager', repos = 'http://cran.us.r-project.org')")
+  command %Q(R -e "install.packages('BiocManager', repos = 'http://cran.us.r-project.org')" > /tmp/BiocManagerInstall.log)
   not_if {File.exists? "/usr/local/lib/R/library/BiocManager"}
 end
 
 if reldev == :dev
   execute "make devel if necessary" do
-    command %Q(R -e "BiocManager::install(version='devel')")
+    command %Q(R -e "BiocManager::install(version='devel', ask=FALSE)" >> /tmp/BiocManagerInstall.log)
     user "root"
     not_if %Q(R --slave -q -e "!BiocManager:::isDevel()" | grep -q FALSE)
   end
@@ -266,6 +266,7 @@ execute "install software Bioconductor packages" do
   command %q(R -e "source('/tmp/softwarePackages.R')" > /tmp/softwarePackages.log)
   user "ubuntu"
   group "ubuntu"
+  timeout 7200
   not_if {File.exists? "/usr/local/lib/R/library/BiocGenerics"}
 end
 
