@@ -16,3 +16,8 @@ This recipe was written for an Ubuntu 16.04 AWS EC2 instance with 4 cores,
 Usage
 =====
 See instructions at https://github.com/Bioconductor/AWS_management/blob/master/docs/Configure_AMI_from_Chef.md
+
+Additional Docs
+================
+
+See https://docs.chef.io/resource_execute.html 
