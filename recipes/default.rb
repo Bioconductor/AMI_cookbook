@@ -238,6 +238,29 @@ ubuntu_dir = "/home/ubuntu"
     end
 end
 
+
+## variables for persistent hub caching
+execute "persistent ah cache" do
+  user "ubuntu"
+  command "echo 'export ANNOTATION_HUB_ASK=FALSE' >> /home/ubuntu/.bashrc"
+end
+execute "persistent eh cache" do
+  user "ubuntu"
+  command "echo 'export EXPERIMENT_HUB_ASK=FALSE' >> /home/ubuntu/.bashrc"
+end
+
+## directories for default hub/bfc caching
+caching_dir = "home/ubuntu/.cache"
+%w(AnnotationHub ExperimentHub BiocFileCache).each do |dir|
+    directory "#{caching_dir}/#{dir}" do
+        owner "ubuntu"
+        group "ubuntu"
+        mode "0775"
+        action :create
+    end
+end
+
+
 ## Install base, software, data experiment and annotation packages
 
 cookbook_file "/tmp/basePackages.R" do
