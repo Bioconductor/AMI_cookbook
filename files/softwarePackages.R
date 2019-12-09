@@ -6,7 +6,7 @@ url <- "http://www.bioconductor.org/packages/stats/bioc/bioc_pkg_scores.tab"
 tbl <- read.table(url, header=TRUE, stringsAsFactors=FALSE)
 sorted <- tbl[with(tbl, order(-Download_score, Package)), ]
 pkgs <- unique(c(sorted[1:75, "Package"],
-          "devtools", "knitr", "rmarkdown", "BiocStyle"))
+          "devtools", "knitr", "caTools", "rmarkdown", "BiocStyle"))
 
 installed <- rownames(installed.packages(lib.loc=ubuntu_lib))
 try <- setdiff(pkgs, c(installed, "BiocInstaller", "xps"))
