@@ -4,9 +4,9 @@ default['time_zone'] = "America/New_York"
 ## 'r_version', 'bioc_version', 'r_url' and 'r_src_dir'
 default['r_version'] = {rel: '3.6', dev: '4.0'}
 default['bioc_version'] = {rel: '3.10', dev: '3.11'}
-default['r_url'] = {rel: 'https://cran.rstudio.com/src/base/R-3/R-3.6.1.tar.gz',
+default['r_url'] = {rel: 'https://cran.rstudio.com/src/base/R-3/R-3.6.3.tar.gz',
   dev: 'https://stat.ethz.ch/R/daily/R-devel.tar.gz'}
-default['r_src_dir'] = {rel: 'R-3.6.1', dev: 'R-devel'}
+default['r_src_dir'] = {rel: 'R-3.6.3', dev: 'R-devel'}
 
 ## System dependencies for R / BioC packages
 default['jags_url'] = {dev: "https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-4.2.0.tar.gz/download",
