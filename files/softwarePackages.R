@@ -9,7 +9,7 @@ pkgs <- unique(c(sorted[1:75, "Package"],
           "devtools", "knitr", "caTools", "rmarkdown", "BiocStyle"))
 
 installed <- rownames(installed.packages(lib.loc=ubuntu_lib))
-try <- setdiff(pkgs, c(installed, "BiocInstaller", "xps"))
+try <- setdiff(pkgs, c(installed, "BiocInstaller", "xps", "DESeq"))
 
 for (xx in try) {
    print(paste0("TRYING: ", xx))

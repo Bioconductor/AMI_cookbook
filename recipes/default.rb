@@ -55,7 +55,7 @@ pkgs = %w(ack-grep libnetcdf-dev libhdf5-serial-dev sqlite libfftw3-dev
           libmpfr-dev libudunits2-dev tree python-yaml libmodule-build-perl 
           gdb biber git python-sklearn python-numpy python-pandas python-h5py
           libprotoc-dev libprotobuf-dev protobuf-compiler libapparmor-dev 
-          libgeos-dev libmagick++-dev libsasl2-dev
+          libgeos-dev libmagick++-dev libsasl2-dev libpcre2-dev
           gdebi-core)
 package pkgs do
   action :install
@@ -265,7 +265,7 @@ end
 
 cookbook_file "/tmp/basePackages.R" do
   source "basePackages.R"
-  mode 0755
+  mode "0755"
 end
 
 execute "install base Bioconductor packages" do
@@ -282,7 +282,7 @@ end
 
 cookbook_file "/tmp/softwarePackages.R" do
   source "softwarePackages.R"
-  mode 0755
+  mode "0755"
 end
 
 execute "install software Bioconductor packages" do
@@ -295,7 +295,7 @@ end
 
 cookbook_file "/tmp/dataExperimentPackages.R" do
   source "dataExperimentPackages.R"
-  mode 0755
+  mode "0755"
 end
 
 execute "install data experiment Bioconductor packages" do
@@ -306,7 +306,7 @@ end
 
 cookbook_file "/tmp/annotationPackages.R" do
   source "annotationPackages.R"
-  mode 0755
+  mode "0755"
 end
 
 execute "install annotation Bioconductor packages" do
