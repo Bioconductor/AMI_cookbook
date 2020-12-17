@@ -1,6 +1,6 @@
 ## ubuntu writable library
-dir.create(Sys.getenv("R_LIBS_USER"), recursive=TRUE)
-lib <- Sys.getenv("R_LIBS_USER")
+lib <- gsub(Sys.getenv("R_LIBS_USER"), pattern="~", replacement="/home/ubuntu")
+dir.create(lib, recursive=TRUE)
 
 ## ubuntu copy of BiocManager
 library(BiocManager)

@@ -37,23 +37,23 @@ pkgs = %w(ack-grep libnetcdf-dev libhdf5-serial-dev sqlite libfftw3-dev
           libfftw3-doc libopenbabel-dev fftw3 fftw3-dev pkg-config 
           xfonts-100dpi xfonts-75dpi
           libopenmpi-dev openmpi-bin mpi-default-bin openmpi-common
-          libexempi3 openmpi-doc texlive-science python-mpi4py
+          libexempi8 openmpi-doc texlive-science python-mpi4py-doc
           texlive-bibtex-extra texlive-fonts-extra fortran77-compiler gfortran
           libreadline-dev libx11-dev libxt-dev texinfo libxml2-dev
           libcurl4-openssl-dev xvfb  libpng-dev
           libjpeg-dev libcairo2-dev libtiff5-dev
-          tcl8.5-dev tk8.5-dev libicu-dev libgsl0-dev
-          libgtk2.0-dev gcc-4.8 default-jre openjdk-8-jdk texlive-latex-extra
+          tcl8.6-dev tk8.6-dev libicu-dev libgsl0-dev
+          libgtk2.0-dev gcc-10 default-jre openjdk-8-jdk texlive-latex-extra
           texlive-fonts-recommended libgl1-mesa-dev libglu1-mesa-dev
           htop libgmp3-dev imagemagick unzip libncurses-dev 
-          libbz2-dev libxpm-dev liblapack-dev libv8-3.14-dev libperl-dev
+          libbz2-dev libxpm-dev liblapack-dev libperl-dev
           libarchive-extract-perl libfile-copy-recursive-perl libcgi-pm-perl 
           tabix libdbi-perl libdbd-mysql-perl ggobi libgtkmm-2.4-dev 
-          libssl-dev byacc
+          libssl-dev byacc libv8-dev
           automake libmysqlclient-dev postgresql-server-dev-all
-          firefox graphviz python-pip libxml-simple-perl texlive-lang-european
+          firefox graphviz python3-pip libxml-simple-perl texlive-lang-european
           libmpfr-dev libudunits2-dev tree python-yaml libmodule-build-perl 
-          gdb biber git python-sklearn python-numpy python-pandas python-h5py
+          gdb biber git python-sklearn-doc python-numpy python-pandas-doc python-h5py-doc
           libprotoc-dev libprotobuf-dev protobuf-compiler libapparmor-dev 
           libgeos-dev libmagick++-dev libsasl2-dev libpcre2-dev
           gdebi-core)
@@ -63,6 +63,7 @@ end
 
 ## --------------------------------------------------------------------------- 
 ## Non-repo packages
+
 
 ## pandoc: newer version than available from the Ubuntu package repo
 pandoc_deb = node['pandoc_url'].split("/").last
@@ -78,22 +79,22 @@ end
 ## Python
 
 execute "update pip" do
-  command "pip install --upgrade pip"
+  command "pip3 install --upgrade pip"
 end
 
 execute "install jupyter" do
-  command "pip install jupyter"
+  command "pip3 install jupyter"
   not_if "which jupyter | grep -q jupyter"
 end
 
 execute "install ipython" do
-  command "pip install ipython==4.1.2"
-  not_if "pip freeze | grep -q ipython"
+  command "pip3 install ipython==4.1.2"
+  not_if "pip3 freeze | grep -q ipython"
 end
 
 execute "install nbconvert" do
-  command "pip install nbconvert==4.1.0"
-  not_if "pip freeze | grep -q nbconvert"
+  command "pip3 install nbconvert==4.1.0"
+  not_if "pip3 freeze | grep -q nbconvert"
 end
 
 ## Clustal Omega: multiple sequence alignment
@@ -332,6 +333,18 @@ end
 
 ## --------------------------------------------------------------------------- 
 ## rstudio server
+
+
+## need lower version of ssl
+ssl_ver = node['ssl_1.0'].split("/").last
+
+remote_file "/tmp/#{ssl_ver}" do
+  source node['ssl_1.0']
+end
+
+dpkg_package "ssl_1.0" do
+  source "/tmp/#{ssl_ver}"
+end
 
 execute "disable password lock in cloud.cfg" do
     command %Q(sed -i.bak "s/lock_passwd: True/lock_passwd: False/" cloud.cfg)

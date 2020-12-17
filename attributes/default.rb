@@ -22,3 +22,6 @@ default['clustalo_url'] = "http://www.clustal.org/omega/clustal-omega-1.2.4.tar.
 ## vignettes and rstudio
 default['pandoc_url'] = "https://github.com/jgm/pandoc/releases/download/1.19.1/pandoc-1.19.1-1-amd64.deb"
 default['rstudio_url'] = "https://download2.rstudio.org/rstudio-server-1.1.463-amd64.deb"
+# rstudio needs Dependency is not satisfiable: libssl1.0.0|libssl1.0.2  but 1.1
+# available on ubuntu 20.04
+default['ssl_1.0'] = "http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5.4_amd64.deb"

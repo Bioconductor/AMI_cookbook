@@ -1,5 +1,11 @@
+lib <- gsub(Sys.getenv("R_LIBS_USER"), pattern="~", replacement="/home/ubuntu")
+
+.libPaths(c(lib, .libPaths()))
+
+ubuntu_lib <- lib
+
 library(BiocManager)
-ubuntu_lib <- .libPaths()[1]
+
 
 ## Top 30 annotation downloads:
 url <- "http://www.bioconductor.org/packages/stats/data-annotation/annotation_pkg_scores.tab"
