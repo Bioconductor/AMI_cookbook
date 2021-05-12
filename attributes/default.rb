@@ -12,7 +12,8 @@ default['r_src_dir'] = {rel: 'R-4.0.3', dev: 'R-devel'}
 default['jags_url'] = {dev: "https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-4.2.0.tar.gz/download",
   rel: "https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-4.2.0.tar.gz/download"}
 default['jags_dir'] = {dev: "JAGS-4.2.0", rel: "JAGS-4.2.0"}
-default['libsbml_url']  = "https://s3.amazonaws.com/linux-provisioning/libSBML-5.10.2-core-src.tar.gz"
+#default['libsbml_url']  = "https://s3.amazonaws.com/linux-provisioning/libSBML-5.10.2-core-src.tar.gz"
+default['libsbml_url']  = "http://downloads.sourceforge.net/project/sbml/libsbml/5.10.2/stable/libSBML-5.10.2-core-src.tar.gz"
 default['libsbml_dir'] = "libsbml-5.10.2"
 default['vienna_rna_url'] = "https://www.tbi.univie.ac.at/RNA/download/sourcecode/2_2_x/ViennaRNA-2.2.7.tar.gz"
 default['vienna_rna_dir'] = "ViennaRNA-2.2.7"
